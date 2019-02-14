@@ -39,7 +39,7 @@ class App extends Component {
                 <UserListItem key={user.nat + index}
                               firstName={user.name.first}
                               lastName={user.name.last}
-                              thumbnail={user.picture.thumbnail}
+                              thumbnail={user.picture.medium}
                               gender={user.gender}
                               city={user.location.city}
                               state={user.location.state}
