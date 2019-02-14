@@ -8,8 +8,9 @@ class App extends Component {
     super(props);
     this.state = {
       usersList: []
-    }
+    };
     this.fetchUsers = this.fetchUsers.bind(this);
+      this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -28,7 +29,13 @@ class App extends Component {
           })
         })
   }
-
+    handleClick(e){
+        e.preventDefault();
+        this.setState({
+            usersList: this.state.usersList.filter(item => item !== e.target.value)
+        });
+        //console.log(this.state.usersList);
+    }
   render() {
     const userList = this.state.usersList;
     return (
@@ -44,6 +51,7 @@ class App extends Component {
                               city={user.location.city}
                               state={user.location.state}
                               email={user.email}
+                              nat={user.nat}
                 />
             )}
         </ul>
