@@ -29,12 +29,13 @@ class App extends Component {
           })
         })
   }
-    handleClick(e){
+    handleClick(e) {
         e.preventDefault();
         this.setState({
-            usersList: this.state.usersList.filter(item => item !== e.target.value)
+            usersList: this.state.usersList.filter(function (item) {
+                return item.login.sha1 !== e.target.value;
+            })
         });
-        //console.log(this.state.usersList);
     }
   render() {
     const userList = this.state.usersList;
@@ -44,6 +45,7 @@ class App extends Component {
         <ul style={{listStyleType: "none", textAlign: "left"}}>
             {userList.map((user, index) =>
                 <UserListItem key={user.nat + index}
+                              id={user.login.sha1}
                               firstName={user.name.first}
                               lastName={user.name.last}
                               thumbnail={user.picture.medium}
@@ -52,6 +54,7 @@ class App extends Component {
                               state={user.location.state}
                               email={user.email}
                               nat={user.nat}
+                              handleClick={this.handleClick}
                 />
             )}
         </ul>
